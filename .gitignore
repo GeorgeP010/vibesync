@@ -1,0 +1,14 @@
+# Local credentials – never commit
+includes/config.php
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+.idea/
+.vscode/
+
+# PHP runtime
+*.log
+error_log
