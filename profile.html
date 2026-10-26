@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>VibeSync - Profile</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: { "primary": "#ddb7ff", "primary-container": "#b76dff", "tertiary": "#ffb0cd", "tertiary-container": "#f751a1", "secondary": "#adc6ff", "secondary-container": "#0566d9", "surface": "#131315", "surface-container": "#201f21", "surface-container-high": "#2a2a2c", "surface-container-highest": "#353437", "surface-container-low": "#1c1b1d", "surface-container-lowest": "#0e0e10", "on-surface": "#e5e1e4", "on-surface-variant": "#cfc2d6", "outline": "#988d9f", "outline-variant": "#4d4354", "on-primary": "#490080", "on-primary-container": "#400071", "background": "#131315", "on-background": "#e5e1e4", "error": "#ffb4ab", "secondary-fixed-dim": "#adc6ff" },
+                fontFamily: { "display": ["Sora"], "body": ["Inter"] },
+                fontSize: { "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }] }
+            }}
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background bg-radial-default min-h-screen font-body text-body-md overflow-x-hidden" data-logged-in="1">
+
+    <header class="top-bar">
+        <a href="home.html" class="text-primary hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h1 class="top-bar-title">Profile</h1>
+        <a href="login.html" class="text-error hover:bg-white/5 transition-colors p-2 rounded-full" aria-label="Log out">
+            <span class="material-symbols-outlined">logout</span>
+        </a>
+    </header>
+
+    <main class="content-padding max-w-3xl mx-auto space-y-8">
+        <!-- Profile Header -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 animate-on-scroll">
+            <div class="glass-card rounded-xl p-5 flex flex-col items-center text-center col-span-1 md:col-span-2 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary-container/15 to-transparent opacity-50"></div>
+                <div class="relative z-10 flex flex-col items-center w-full">
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary neon-glow-primary mb-3">
+                        <img id="profile-avatar" alt="Alex Rivera" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpTVwtWq_ezrNi9iyw_VYBwVcaebRtRYzcW1m1UHSm6PBVnrr9FeMgMp9x39sxmEuLe-zrJX5rcxDO_wSl-QikdhzI7KOyfkptXHplp-j1F97ixMddaJu95yfWHfNgCgLJjX6NJSu-CJXoK_D7Vm762hhCx55MgMm3FGS7mQp2IbnusyqI4FqygGmFLExZ1gT3uztsK96Mk-3FTkk5BdmW4fuK2KY3EfR8mrHVkr7TWW3LhZyxD-39B4_vL7b5xazceLLHIfvZwBE"/>
+                    </div>
+                    <h2 id="profile-name" class="font-display text-headline-lg text-on-surface mb-1">Alex Rivera</h2>
+                    <p class="font-body text-body-md text-on-surface-variant flex items-center gap-1">
+                        <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
+                        <span id="profile-location">Rotterdam, Netherlands</span>
+                    </p>
+                    <div class="flex gap-3 mt-4 w-full max-w-xs">
+                        <button id="edit-profile-btn" class="btn-primary flex-1 justify-center">
+                            <span class="material-symbols-outlined text-[18px]">edit</span>
+                            Edit Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-rows-3 gap-4 col-span-1">
+                <a href="artists.html" class="glass-card rounded-xl p-4 flex items-center justify-between hover:bg-white/5 transition-colors">
+                    <div>
+                        <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Favorites</p>
+                        <p class="font-display text-headline-md text-primary">2</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">favorite</span>
+                    </div>
+                </a>
+                <a href="schedule.html" class="glass-card rounded-xl p-4 flex items-center justify-between hover:bg-white/5 transition-colors">
+                    <div>
+                        <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">In schedule</p>
+                        <p class="font-display text-headline-md text-tertiary">3</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-tertiary">event_note</span>
+                    </div>
+                </a>
+                <a href="friends.html" class="glass-card rounded-xl p-4 flex items-center justify-between hover:bg-white/5 transition-colors relative">
+                    <div>
+                        <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Friends</p>
+                        <p class="font-display text-headline-md text-secondary">4</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center relative">
+                        <span class="material-symbols-outlined text-secondary">group</span>
+                        <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] rounded-full bg-tertiary text-on-primary font-display text-[11px] font-bold flex items-center justify-center px-1">
+                            1
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Vibe Preferences -->
+        <section class="glass-card rounded-xl p-5 space-y-4 animate-on-scroll">
+            <h3 class="font-display text-headline-md text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">equalizer</span>
+                Vibe DNA
+            </h3>
+            <p class="font-body text-body-md text-on-surface-variant">The genres defining your festival recommendations.</p>
+
+            <div id="genres-list" class="flex flex-wrap gap-2">
+                <span class="genre-tag inline-flex items-center gap-1 px-3 py-1.5 rounded-full font-body text-label-sm bg-primary-container/20 text-primary border border-primary/30" data-genre-id="1">
+                    <span>Techno</span>
+                    <button type="button" class="remove-genre-btn hover:text-error transition-colors" data-genre-id="1" aria-label="Remove Techno">
+                        <span class="material-symbols-outlined text-[14px]">close</span>
+                    </button>
+                </span>
+                <span class="genre-tag inline-flex items-center gap-1 px-3 py-1.5 rounded-full font-body text-label-sm bg-secondary-container/20 text-secondary border border-secondary/30" data-genre-id="2">
+                    <span>Melodic Techno</span>
+                    <button type="button" class="remove-genre-btn hover:text-error transition-colors" data-genre-id="2" aria-label="Remove Melodic Techno">
+                        <span class="material-symbols-outlined text-[14px]">close</span>
+                    </button>
+                </span>
+                <span class="genre-tag inline-flex items-center gap-1 px-3 py-1.5 rounded-full font-body text-label-sm bg-tertiary-container/20 text-tertiary border border-tertiary/30" data-genre-id="3">
+                    <span>Progressive House</span>
+                    <button type="button" class="remove-genre-btn hover:text-error transition-colors" data-genre-id="3" aria-label="Remove Progressive House">
+                        <span class="material-symbols-outlined text-[14px]">close</span>
+                    </button>
+                </span>
+            </div>
+
+            <form id="add-genre-form" class="flex gap-2 pt-2">
+                <div class="glass-panel rounded-full flex-1 flex items-center px-4 py-2">
+                    <input id="add-genre-input" type="text" maxlength="80" placeholder="Add genre (e.g. Ambient, Drum & Bass)…"
+                           class="bg-transparent border-none outline-none w-full text-on-surface placeholder-on-surface-variant font-body text-body-md"/>
+                </div>
+                <button type="submit" class="btn-primary px-4 py-2 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]">add</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Settings -->
+        <section class="glass-card rounded-xl p-5 space-y-4 animate-on-scroll">
+            <h3 class="font-display text-headline-md text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">tune</span>
+                App Settings
+            </h3>
+            <div class="space-y-4 divide-y divide-white/5">
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <p class="font-display text-[16px] text-on-surface">Set Alerts</p>
+                        <p class="font-body text-label-sm text-on-surface-variant">Notify me 15m before saved sets start</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" class="setting-toggle" data-setting="set_alerts" checked/>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between pt-4">
+                    <div>
+                        <p class="font-display text-[16px] text-on-surface">Crowd Alerts</p>
+                        <p class="font-body text-label-sm text-on-surface-variant">Notify when favorite stages get congested</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" class="setting-toggle" data-setting="crowd_alerts" checked/>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between pt-4">
+                    <div>
+                        <p class="font-display text-[16px] text-on-surface">Friend Tracker</p>
+                        <p class="font-body text-label-sm text-on-surface-variant">Share live stage location with friends</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" class="setting-toggle" data-setting="friend_tracker" checked/>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="modal-close-btn" data-modal-close aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <h3 class="font-display text-headline-md text-on-surface mb-1">Edit profile</h3>
+            <p class="font-body text-body-md text-on-surface-variant mb-5">Update your name, location and avatar.</p>
+
+            <form id="edit-profile-form" class="space-y-4" novalidate>
+                <label class="block">
+                    <span class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Name</span>
+                    <input type="text" name="name" required maxlength="120"
+                           value="Alex Rivera"
+                           class="mt-2 w-full bg-surface-container-low border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder-on-surface-variant focus:outline-none focus:border-primary/60 transition-colors"/>
+                </label>
+                <label class="block">
+                    <span class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Location</span>
+                    <input type="text" name="location" maxlength="120"
+                           value="Rotterdam, Netherlands"
+                           placeholder="City, country"
+                           class="mt-2 w-full bg-surface-container-low border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder-on-surface-variant focus:outline-none focus:border-primary/60 transition-colors"/>
+                </label>
+                <label class="block">
+                    <span class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Avatar URL</span>
+                    <input type="url" name="avatar_url" maxlength="500"
+                           value="https://lh3.googleusercontent.com/aida-public/AB6AXuDpTVwtWq_ezrNi9iyw_VYBwVcaebRtRYzcW1m1UHSm6PBVnrr9FeMgMp9x39sxmEuLe-zrJX5rcxDO_wSl-QikdhzI7KOyfkptXHplp-j1F97ixMddaJu95yfWHfNgCgLJjX6NJSu-CJXoK_D7Vm762hhCx55MgMm3FGS7mQp2IbnusyqI4FqygGmFLExZ1gT3uztsK96Mk-3FTkk5BdmW4fuK2KY3EfR8mrHVkr7TWW3LhZyxD-39B4_vL7b5xazceLLHIfvZwBE"
+                           placeholder="https://..."
+                           class="mt-2 w-full bg-surface-container-low border border-white/10 rounded-lg px-4 py-3 text-on-surface placeholder-on-surface-variant focus:outline-none focus:border-primary/60 transition-colors"/>
+                </label>
+
+                <div class="flex gap-3 pt-2">
+                    <button type="button" class="btn-secondary flex-1 justify-center" data-modal-close>Cancel</button>
+                    <button type="submit" class="btn-primary flex-1 justify-center">
+                        <span class="material-symbols-outlined text-[18px]">save</span>
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="home.html" class="nav-item" data-page="home">
+                <span class="material-symbols-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item" data-page="map">
+                <span class="material-symbols-outlined">map</span>
+                <span>Map</span>
+            </a>
+            <a href="schedule.html" class="nav-item" data-page="schedule">
+                <span class="material-symbols-outlined">event_note</span>
+                <span>Schedule</span>
+            </a>
+            <a href="artists.html" class="nav-item" data-page="artists">
+                <span class="material-symbols-outlined">explore</span>
+                <span>Artists</span>
+            </a>
+            <a href="queues.html" class="nav-item" data-page="queues">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <span>Queues</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

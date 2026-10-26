@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>VibeSync - Schedule</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: { "primary": "#ddb7ff", "primary-container": "#b76dff", "tertiary": "#ffb0cd", "tertiary-container": "#f751a1", "secondary": "#adc6ff", "secondary-container": "#0566d9", "surface": "#131315", "surface-container": "#201f21", "surface-container-high": "#2a2a2c", "surface-container-highest": "#353437", "surface-container-low": "#1c1b1d", "surface-container-lowest": "#0e0e10", "on-surface": "#e5e1e4", "on-surface-variant": "#cfc2d6", "outline": "#988d9f", "outline-variant": "#4d4354", "on-primary": "#490080", "on-primary-container": "#400071", "background": "#131315", "on-background": "#e5e1e4", "error": "#ffb4ab", "secondary-fixed-dim": "#adc6ff" },
+                fontFamily: { "display": ["Sora"], "body": ["Inter"] },
+                fontSize: { "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }] }
+            }}
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background bg-radial-default min-h-screen font-body text-body-md overflow-x-hidden" data-logged-in="1">
+
+    <header class="top-bar">
+        <a href="home.html" class="text-primary hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h1 class="top-bar-title">Schedule</h1>
+        <a href="profile.html" class="hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined text-primary">account_circle</span>
+        </a>
+    </header>
+
+    <main class="content-padding max-w-3xl mx-auto space-y-8"
+          data-favorites='["1","2"]'
+          data-scheduled='[1,4,8]'>
+
+        <section class="flex flex-col items-center space-y-4 animate-on-scroll">
+            <h1 class="font-display text-headline-lg text-on-surface text-center">Festival Lineup</h1>
+
+            <div class="glass-card rounded-full p-1 inline-flex" data-tab-group="schedule">
+                <button class="tab-button tab-active" data-tab="my">My Schedule</button>
+                <button class="tab-button" data-tab="full">Full Lineup</button>
+            </div>
+
+            <div class="day-selector flex gap-3 overflow-x-auto w-full pb-2 no-scrollbar snap-x justify-center">
+                <button class="day-option day-active" data-day-label="Friday Mar 12">
+                    <span class="font-body text-label-sm uppercase opacity-70">FRI</span>
+                    <span class="font-display text-headline-md">12</span>
+                </button>
+                <button class="day-option" data-day-label="Saturday Mar 13">
+                    <span class="font-body text-label-sm uppercase opacity-70">SAT</span>
+                    <span class="font-display text-headline-md">13</span>
+                </button>
+                <button class="day-option" data-day-label="Sunday Mar 14">
+                    <span class="font-body text-label-sm uppercase opacity-70">SUN</span>
+                    <span class="font-display text-headline-md">14</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- My Schedule Tab Content -->
+        <section class="animate-on-scroll" data-tab-content="schedule" data-tab-id="my">
+            <h2 class="font-display text-headline-md text-on-surface mb-4">Your Picks</h2>
+            <div id="saved-schedule-list" class="space-y-3">
+
+                <!-- Performance 1: Charlotte de Witte -->
+                <div class="glass-card rounded-xl p-5 relative overflow-hidden cursor-pointer"
+                     data-artist='{"id":"charlotte-de-witte","artist_id":1,"performance_id":8,"name":"Charlotte de Witte","genre":"Techno","stage":"Main Stage","time":"23:30 - 01:00","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM"}'
+                     data-performance-id="8">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Charlotte de Witte</h3>
+                            <div class="flex items-center text-secondary mt-1">
+                                <span class="material-symbols-outlined text-[16px] mr-1" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                                <span class="font-body text-label-sm">Main Stage</span>
+                            </div>
+                        </div>
+                        <button class="favorite-btn favorited text-primary" data-artist-id="1">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2 mt-3">
+                        <span class="bg-primary-container/20 text-primary border border-primary/30 px-2 py-1 rounded-full font-body text-label-sm">Techno</span>
+                        <span class="font-body text-label-sm text-on-surface-variant">23:30 - 01:00</span>
+                    </div>
+                </div>
+
+                <!-- Performance 2: The Glitch Mob -->
+                <div class="glass-card rounded-xl p-5 relative overflow-hidden cursor-pointer"
+                     data-artist='{"id":"glitch-mob","artist_id":11,"performance_id":4,"name":"The Glitch Mob","genre":"Electronic","stage":"Main Stage","time":"18:00 - 19:30","image":""}'
+                     data-performance-id="4">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">The Glitch Mob</h3>
+                            <div class="flex items-center text-secondary mt-1">
+                                <span class="material-symbols-outlined text-[16px] mr-1" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                                <span class="font-body text-label-sm">Main Stage</span>
+                            </div>
+                        </div>
+                        <button class="favorite-btn text-outline hover:text-primary" data-artist-id="11">
+                            <span class="material-symbols-outlined">favorite_border</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2 mt-3">
+                        <span class="bg-primary-container/20 text-primary border border-primary/30 px-2 py-1 rounded-full font-body text-label-sm">Electronic</span>
+                        <span class="font-body text-label-sm text-on-surface-variant">18:00 - 19:30</span>
+                    </div>
+                </div>
+
+            </div>
+            <div id="schedule-empty-state" class="empty-state glass-card rounded-xl" style="display:none;">
+                <span class="material-symbols-outlined">event_busy</span>
+                <p class="font-body text-body-md mb-2">No artists scheduled yet</p>
+                <p class="font-body text-label-sm mb-4">Browse the lineup and tap the heart or "Schedule" button to save artists.</p>
+                <a href="artists.html" class="btn-primary inline-flex">Discover Artists</a>
+            </div>
+        </section>
+
+        <!-- Full Lineup Tab Content -->
+        <section class="relative animate-on-scroll" data-tab-content="schedule" data-tab-id="full" style="display:none;">
+            <div class="space-y-4">
+                
+                <div class="glass-card rounded-xl p-5 relative overflow-hidden cursor-pointer"
+                     data-artist='{"id":"neon-horizon","artist_id":8,"performance_id":1,"name":"Neon Horizon","genre":"House","stage":"Main Stage","time":"14:00 - 15:30","image":""}'>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Neon Horizon</h3>
+                            <p class="text-secondary font-body text-label-sm mt-1">Main Stage • 14:00 - 15:30</p>
+                        </div>
+                        <button class="btn-secondary schedule-toggle-btn text-label-sm" data-performance-id="1">
+                            <span class="material-symbols-outlined text-[16px]">calendar_add_on</span>
+                            <span class="schedule-label">Schedule</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 relative overflow-hidden cursor-pointer"
+                     data-artist='{"id":"glitch-mob","artist_id":11,"performance_id":4,"name":"The Glitch Mob","genre":"Electronic","stage":"Main Stage","time":"18:00 - 19:30","image":""}'>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">The Glitch Mob</h3>
+                            <p class="text-secondary font-body text-label-sm mt-1">Main Stage • 18:00 - 19:30</p>
+                        </div>
+                        <button class="btn-secondary scheduled schedule-toggle-btn text-label-sm" data-performance-id="4">
+                            <span class="material-symbols-outlined text-[16px]">event_available</span>
+                            <span class="schedule-label">Scheduled</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 relative overflow-hidden cursor-pointer"
+                     data-artist='{"id":"the-midnight","artist_id":6,"performance_id":6,"name":"The Midnight","genre":"Synthwave","stage":"Neon Garden","time":"22:45 - 00:00","image":""}'>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">The Midnight</h3>
+                            <p class="text-secondary font-body text-label-sm mt-1">Neon Garden • 22:45 - 00:00</p>
+                        </div>
+                        <button class="btn-secondary schedule-toggle-btn text-label-sm" data-performance-id="6">
+                            <span class="material-symbols-outlined text-[16px]">calendar_add_on</span>
+                            <span class="schedule-label">Schedule</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 relative overflow-hidden cursor-pointer"
+                     data-artist='{"id":"charlotte-de-witte","artist_id":1,"performance_id":8,"name":"Charlotte de Witte","genre":"Techno","stage":"Main Stage","time":"23:30 - 01:00","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM"}'>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Charlotte de Witte</h3>
+                            <p class="text-secondary font-body text-label-sm mt-1">Main Stage • 23:30 - 01:00</p>
+                        </div>
+                        <button class="btn-secondary scheduled schedule-toggle-btn text-label-sm" data-performance-id="8">
+                            <span class="material-symbols-outlined text-[16px]">event_available</span>
+                            <span class="schedule-label">Scheduled</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Artist Modal -->
+    <div id="artist-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="modal-close-btn" data-modal-close aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex items-center gap-4 mb-4 mt-2">
+                <div class="w-16 h-16 rounded-xl bg-surface-container-highest overflow-hidden">
+                    <img class="modal-artist-img w-full h-full object-cover" src="" alt="Artist"/>
+                </div>
+                <div class="flex-1">
+                    <h3 class="modal-artist-name font-display text-headline-md text-on-surface">Artist</h3>
+                    <p class="modal-artist-genre font-body text-body-md text-on-surface-variant">Genre</p>
+                </div>
+                <button class="modal-fav-btn favorite-btn text-outline" data-artist-id="">
+                    <span class="material-symbols-outlined text-[28px]">favorite_border</span>
+                </button>
+            </div>
+            <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-3 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-secondary">location_on</span>
+                    <span class="modal-artist-stage font-body text-body-md">Stage</span>
+                </div>
+                <div class="flex items-center gap-3 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-primary">schedule</span>
+                    <span class="modal-artist-time font-body text-body-md">Time</span>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <button class="modal-schedule-btn btn-primary flex-1 justify-center" data-artist="">Add to Schedule</button>
+                <a href="map.html" class="btn-secondary flex-1 justify-center">
+                    <span class="material-symbols-outlined text-[18px]">map</span>
+                    Navigate
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="home.html" class="nav-item" data-page="home">
+                <span class="material-symbols-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item" data-page="map">
+                <span class="material-symbols-outlined">map</span>
+                <span>Map</span>
+            </a>
+            <a href="schedule.html" class="nav-item active" data-page="schedule">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_note</span>
+                <span>Schedule</span>
+            </a>
+            <a href="artists.html" class="nav-item" data-page="artists">
+                <span class="material-symbols-outlined">explore</span>
+                <span>Artists</span>
+            </a>
+            <a href="queues.html" class="nav-item" data-page="queues">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <span>Queues</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

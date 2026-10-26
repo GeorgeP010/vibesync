@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>VibeSync - Home</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: { "primary": "#ddb7ff", "primary-container": "#b76dff", "tertiary": "#ffb0cd", "tertiary-container": "#f751a1", "secondary": "#adc6ff", "secondary-container": "#0566d9", "surface": "#131315", "surface-container": "#201f21", "surface-container-high": "#2a2a2c", "surface-container-highest": "#353437", "surface-container-low": "#1c1b1d", "surface-container-lowest": "#0e0e10", "on-surface": "#e5e1e4", "on-surface-variant": "#cfc2d6", "outline": "#988d9f", "outline-variant": "#4d4354", "on-primary": "#490080", "on-primary-container": "#400071", "background": "#131315", "on-background": "#e5e1e4", "error": "#ffb4ab", "secondary-fixed-dim": "#adc6ff" },
+                fontFamily: { "display": ["Sora"], "body": ["Inter"] },
+                fontSize: { "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }] }
+            }}
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background bg-radial-default min-h-screen font-body text-body-md overflow-x-hidden" data-logged-in="1">
+
+    <header class="top-bar">
+        <a href="profile.html" class="text-primary hover:bg-white/5 transition-colors p-2 rounded-full" aria-label="Profile">
+            <span class="material-symbols-outlined">account_circle</span>
+        </a>
+        <h1 class="top-bar-title">VibeSync</h1>
+        <a href="schedule.html" class="hover:bg-white/5 transition-colors p-2 rounded-full relative" aria-label="Upcoming sets">
+            <span class="material-symbols-outlined text-primary">notifications</span>
+            <span class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full bg-tertiary text-on-primary font-display text-[11px] font-bold flex items-center justify-center px-1">3</span>
+        </a>
+    </header>
+
+    <main class="content-padding max-w-4xl mx-auto space-y-10"
+          data-favorites='["1","2"]'
+          data-scheduled='[1,2,3]'>
+
+        <!-- Now Playing Hero -->
+        <section class="animate-on-scroll">
+            <div class="glass-card rounded-2xl overflow-hidden relative min-h-[380px] flex flex-col justify-end p-6 md:p-8">
+                <img alt="Charlotte de Witte" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/80 to-transparent"></div>
+                <div class="relative z-10 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-tertiary neon-glow-tertiary animate-pulse"></span>
+                        <span class="font-body text-label-sm text-tertiary uppercase tracking-widest">
+                            Live Now • Main Stage
+                        </span>
+                    </div>
+                    <div>
+                        <h2 class="font-display text-display-xl text-on-surface mb-1">
+                            Charlotte de Witte
+                        </h2>
+                        <p class="font-body text-body-lg text-on-surface-variant">
+                            Techno • High Energy Set
+                        </p>
+                    </div>
+                    <div class="flex gap-3 pt-2">
+                        <a href="map.html" class="btn-primary">
+                            Find the stage
+                        </a>
+                        <a href="schedule.html" class="btn-secondary">
+                            <span class="material-symbols-outlined text-[18px]">event_note</span>
+                            Lineup
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Up Next -->
+        <section class="animate-on-scroll">
+            <div class="flex justify-between items-end mb-4">
+                <h3 class="font-display text-headline-lg text-on-surface">Up Next</h3>
+                <a class="font-body text-label-sm text-primary hover:text-[#f0dbff] transition-colors" href="schedule.html">View Schedule</a>
+            </div>
+            <div class="flex overflow-x-auto gap-4 pb-3 no-scrollbar snap-x">
+                
+                <div class="glass-card rounded-xl p-5 min-w-[280px] snap-start flex-shrink-0 relative overflow-hidden group cursor-pointer"
+                     data-artist='{"id":"bicep","artist_id":2,"performance_id":9,"name":"BICEP","genre":"Electronic","stage":"Neon Garden","time":"21:00 - 22:30","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuCcNQeZ8_lg0R7a96p1nIiEGVvrO_LWOaIqG5URz-BJu6FeBv4S6S0FdjrtocKG0RTo8MiMI4fOUkX3jWWrQLQ1oV4KEP59TDNvaMlnZOJ0EXJCNzMHO5l2a_9efAJpHoeR2yXA_e69n-17sSkGc48ivanrEHjqJcDzxfCLdFRTmC4wIgtPhUueee6oWVYP1N6yZ_wl0L-bEDo3tDB8JPEEUikURGlF_gPJmEF3a7T8mYT75BxAUfHbJIe988mVawAL7UPt0OljFl4"}'>
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-secondary-container/20 group-hover:bg-secondary-container/40 rounded-bl-full blur-2xl transition-colors"></div>
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="bg-surface-container-highest text-on-surface-variant font-body text-label-sm px-3 py-1 rounded-full">
+                            21:00 - 22:30
+                        </div>
+                        <button class="favorite-btn favorited text-primary hover:text-primary transition-colors" data-artist-id="2">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                        </button>
+                    </div>
+                    <h4 class="font-display text-headline-md text-on-surface">BICEP</h4>
+                    <p class="font-body text-body-md text-on-surface-variant mt-1">Neon Garden</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 min-w-[280px] snap-start flex-shrink-0 relative overflow-hidden group cursor-pointer"
+                     data-artist='{"id":"peggy-gou","artist_id":3,"performance_id":10,"name":"Peggy Gou","genre":"House","stage":"Circuit Grounds","time":"22:15 - 23:45","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuCscqzXeE0KOnhHEl5EnsodD3o21EGnBwtMUDpVQiIQwwzpXucqCOMxJYefm21wE5f77Uk375Ji7eWkLyF_dYGkb71IVvhmZsBdB_Aac2cXeg824M5CMovaiPaxJ6xhNVMVQh8uNv3TGGj4SudrNQ06_McYOHWBVM8T5CVePy2-phzU46SsXPRyONIJDw5CxMsPOyd_sU8fcvWdwxd1Y_svIg3-MAZw9B90GMWE93E86jIl451UAN11ImIRSnjDD2pxa-x2KVeWHvE"}'>
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary-container/20 group-hover:bg-primary-container/40 rounded-bl-full blur-2xl transition-colors"></div>
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="bg-surface-container-highest text-on-surface-variant font-body text-label-sm px-3 py-1 rounded-full">
+                            22:15 - 23:45
+                        </div>
+                        <button class="favorite-btn text-outline hover:text-primary transition-colors" data-artist-id="3">
+                            <span class="material-symbols-outlined">favorite_border</span>
+                        </button>
+                    </div>
+                    <h4 class="font-display text-headline-md text-on-surface">Peggy Gou</h4>
+                    <p class="font-body text-body-md text-on-surface-variant mt-1">Circuit Grounds</p>
+                </div>
+
+                <div class="glass-card rounded-xl p-5 min-w-[280px] snap-start flex-shrink-0 relative overflow-hidden group cursor-pointer"
+                     data-artist='{"id":"tale-of-us","artist_id":4,"performance_id":13,"name":"Tale Of Us","genre":"Melodic Techno","stage":"Quantum Valley","time":"20:45 - 22:15","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuAZ-s0_gOx-Wtbtep7G_VdouZptbXY-KiMZWyaeWfZoz1oUEi217bxGmETnGLA2CHDxisdZ-IoOW7h4BofixWjl4Rh7pLH8rOy2tZnBSJj9el58Mz6jtB_VH-FGAusg3_nqWHP5OzITIxVA_CfE7hA-B15eqmGv_UwJdmvvTKGBWMIoUgkJBIwLLRBU4DMUuUhbhGD7OA4FU77iSnzMfiuyD6dCSYO9dt6QIvkN9--HE8hmbC5s1H_SFK_NCX3ZScNoFLhnTG1XSgY"}'>
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/20 group-hover:bg-tertiary-container/40 rounded-bl-full blur-2xl transition-colors"></div>
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="bg-surface-container-highest text-on-surface-variant font-body text-label-sm px-3 py-1 rounded-full">
+                            20:45 - 22:15
+                        </div>
+                        <button class="favorite-btn text-outline hover:text-primary transition-colors" data-artist-id="4">
+                            <span class="material-symbols-outlined">favorite_border</span>
+                        </button>
+                    </div>
+                    <h4 class="font-display text-headline-md text-on-surface">Tale Of Us</h4>
+                    <p class="font-body text-body-md text-on-surface-variant mt-1">Quantum Valley</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bento Grid: Heatmap + For You -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 animate-on-scroll">
+            <section class="md:col-span-5">
+                <h3 class="font-display text-headline-lg text-on-surface mb-4">Crowd Heatmap</h3>
+                <a href="queues.html" class="glass-card rounded-xl p-5 h-[220px] relative overflow-hidden flex flex-col justify-between block hover:border-primary/40 transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-tertiary-container/10 via-primary-container/10 to-secondary-container/10"></div>
+
+                    <div class="relative z-10 flex justify-between items-center bg-surface-container/60 backdrop-blur-md rounded-lg p-3 border border-white/5">
+                        <span class="font-body text-label-sm text-on-surface">Main Bar</span>
+                        <span class="flex items-center gap-1 text-error">
+                            <span class="material-symbols-outlined text-[16px]">local_fire_department</span>
+                            <span class="font-body text-label-sm">85% busy</span>
+                        </span>
+                    </div>
+
+                    <div class="relative z-10 flex justify-between items-center bg-surface-container/60 backdrop-blur-md rounded-lg p-3 border border-white/5">
+                        <span class="font-body text-label-sm text-on-surface">Water Station</span>
+                        <span class="flex items-center gap-1 text-secondary">
+                            <span class="material-symbols-outlined text-[16px]">eco</span>
+                            <span class="font-body text-label-sm">2 min wait</span>
+                        </span>
+                    </div>
+                </a>
+            </section>
+
+            <section class="md:col-span-7">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                    <h3 class="font-display text-headline-lg text-on-surface">For You</h3>
+                </div>
+                <div class="space-y-3">
+
+                    <a href="artists.html" class="glass-card rounded-xl p-4 flex items-center gap-4 group cursor-pointer hover:bg-white/5 transition-colors no-underline">
+                        <div class="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-highest flex items-center justify-center">
+                            <img alt="Charlotte de Witte" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM"/>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-display text-[18px] text-on-surface">Charlotte de Witte</h4>
+                            <p class="font-body text-[14px] text-on-surface-variant mt-0.5">Techno • 98% vibe match</p>
+                        </div>
+                        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                    </a>
+
+                    <a href="queues.html" class="glass-card rounded-xl p-4 flex items-center gap-4 group cursor-pointer hover:bg-white/5 transition-colors no-underline">
+                        <div class="w-14 h-14 rounded-lg bg-surface-container-highest flex items-center justify-center flex-shrink-0 border border-white/5">
+                            <span class="material-symbols-outlined text-secondary text-2xl">water_drop</span>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-display text-[18px] text-on-surface">Water Station</h4>
+                            <p class="font-body text-[14px] text-on-surface-variant mt-0.5">
+                                2 min wait • Near Main Stage
+                            </p>
+                        </div>
+                        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                    </a>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Artist Modal -->
+    <div id="artist-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="modal-close-btn" data-modal-close aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex items-center gap-4 mb-4 mt-2">
+                <div class="w-16 h-16 rounded-xl bg-surface-container-highest overflow-hidden">
+                    <img class="modal-artist-img w-full h-full object-cover" src="" alt="Artist"/>
+                </div>
+                <div class="flex-1">
+                    <h3 class="modal-artist-name font-display text-headline-md text-on-surface">Artist</h3>
+                    <p class="modal-artist-genre font-body text-body-md text-on-surface-variant">Genre</p>
+                </div>
+                <button class="modal-fav-btn favorite-btn text-outline" data-artist-id="">
+                    <span class="material-symbols-outlined text-[28px]">favorite_border</span>
+                </button>
+            </div>
+            <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-3 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-secondary">location_on</span>
+                    <span class="modal-artist-stage font-body text-body-md">Stage</span>
+                </div>
+                <div class="flex items-center gap-3 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-primary">schedule</span>
+                    <span class="modal-artist-time font-body text-body-md">Time</span>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <button class="modal-schedule-btn btn-primary flex-1 justify-center" data-artist="">Add to Schedule</button>
+                <a href="map.html" class="btn-secondary flex-1 justify-center">
+                    <span class="material-symbols-outlined text-[18px]">map</span>
+                    Navigate
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="home.html" class="nav-item active" data-page="home">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item" data-page="map">
+                <span class="material-symbols-outlined">map</span>
+                <span>Map</span>
+            </a>
+            <a href="schedule.html" class="nav-item" data-page="schedule">
+                <span class="material-symbols-outlined">event_note</span>
+                <span>Schedule</span>
+            </a>
+            <a href="artists.html" class="nav-item" data-page="artists">
+                <span class="material-symbols-outlined">explore</span>
+                <span>Artists</span>
+            </a>
+            <a href="queues.html" class="nav-item" data-page="queues">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <span>Queues</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>VibeSync - Festival Map</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: { "primary": "#ddb7ff", "primary-container": "#b76dff", "tertiary": "#ffb0cd", "tertiary-container": "#f751a1", "secondary": "#adc6ff", "secondary-container": "#0566d9", "surface": "#131315", "surface-container": "#201f21", "surface-container-high": "#2a2a2c", "surface-container-highest": "#353437", "surface-container-low": "#1c1b1d", "surface-container-lowest": "#0e0e10", "on-surface": "#e5e1e4", "on-surface-variant": "#cfc2d6", "outline": "#988d9f", "outline-variant": "#4d4354", "on-primary": "#490080", "on-primary-container": "#400071", "background": "#131315", "on-background": "#e5e1e4", "error": "#ffb4ab", "secondary-fixed-dim": "#adc6ff" },
+                fontFamily: { "display": ["Sora"], "body": ["Inter"] },
+                fontSize: { "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }] }
+            }}
+        }
+    </script>
+</head>
+<body class="text-on-background font-body text-body-md h-screen w-screen overflow-hidden flex flex-col relative" data-logged-in="1">
+
+    <header class="top-bar">
+        <a href="home.html" class="text-primary hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h1 class="top-bar-title">Festival Map</h1>
+        <a href="profile.html" class="hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined text-primary">account_circle</span>
+        </a>
+    </header>
+
+    <main class="flex-grow relative h-full w-full pt-16 pb-20 overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-surface-container-lowest">
+            <img alt="Festival Map" class="w-full h-full object-cover opacity-50 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcr3fX7qSxiNhH2tZHOAqFW5f86P2updErbTG2Ppi-ddPG9Qop5scun31QeB9RR-S8zKPUYScgUquW5HtLerqVytwiJ4RjTFBO_JQUkk-7CwXWQL6VF802n4p3MHiV_8AtroZ2WCPX7KNXJtwvuUWzCrlhflvqnAmJnFa_Xmi1A214NdVRTuhWawRXwonVJsp7v_Wn4agiO-17Hd15IKNGTqlJVLUnv_m_P5-HjR80CA_zt9X6shsI53bUuXVEjRujjaHoeG1jjNw"/>
+            <div class="absolute inset-0 bg-gradient-to-tr from-tertiary-container/15 via-primary-container/10 to-secondary-container/15 mix-blend-screen pointer-events-none"></div>
+        </div>
+
+        <!-- Search + filters -->
+        <div class="absolute top-20 left-0 right-0 px-5 z-20 pointer-events-none">
+            <div class="flex gap-2 pointer-events-auto">
+                <div class="glass-panel rounded-full flex-grow flex items-center px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                    <span class="material-symbols-outlined text-outline mr-3">search</span>
+                    <input data-search-input=".map-marker-label"
+                           class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface placeholder-on-surface-variant w-full p-0 outline-none"
+                           placeholder="Search stages or facilities..." type="text"/>
+                </div>
+            </div>
+            <div class="chip-group flex gap-2 mt-3 overflow-x-auto no-scrollbar pb-2 pointer-events-auto"
+                 data-filter-target=".map-marker-label">
+                <button class="chip chip-active whitespace-nowrap">All</button>
+                <button class="chip chip-inactive whitespace-nowrap">Stages</button>
+                <button class="chip chip-inactive whitespace-nowrap">Food</button>
+                <button class="chip chip-inactive whitespace-nowrap">Facility</button>
+            </div>
+        </div>
+
+        <!-- Markers -->
+        <div class="absolute inset-0 z-10 w-full h-full">
+            <!-- Stage 1: Main Stage -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 30%; left: 45%;"
+                    data-tags="stages stage main stage"
+                    data-stage-id="1"
+                    aria-label="Main Stage">
+                <div class="w-12 h-12 bg-primary/20 backdrop-blur-md border border-primary/50 rounded-full flex items-center justify-center neon-glow-primary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Main Stage</span>
+            </button>
+
+            <!-- Stage 2: Neon Garden -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 55%; left: 25%;"
+                    data-tags="stages stage neon garden"
+                    data-stage-id="2"
+                    aria-label="Neon Garden">
+                <div class="w-12 h-12 bg-primary/20 backdrop-blur-md border border-primary/50 rounded-full flex items-center justify-center neon-glow-primary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">speaker</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Neon Garden</span>
+            </button>
+
+            <!-- Stage 3: Bass Arena -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 45%; left: 70%;"
+                    data-tags="stages stage bass arena"
+                    data-stage-id="3"
+                    aria-label="Bass Arena">
+                <div class="w-12 h-12 bg-primary/20 backdrop-blur-md border border-primary/50 rounded-full flex items-center justify-center neon-glow-primary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">subwoofer</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Bass Arena</span>
+            </button>
+
+            <!-- Stage 4: Circuit Grounds -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 70%; left: 55%;"
+                    data-tags="stages stage circuit grounds"
+                    data-stage-id="4"
+                    aria-label="Circuit Grounds">
+                <div class="w-12 h-12 bg-primary/20 backdrop-blur-md border border-primary/50 rounded-full flex items-center justify-center neon-glow-primary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Circuit Grounds</span>
+            </button>
+
+            <!-- Stage 5: Quantum Valley -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 25%; left: 15%;"
+                    data-tags="stages stage quantum valley"
+                    data-stage-id="5"
+                    aria-label="Quantum Valley">
+                <div class="w-12 h-12 bg-primary/20 backdrop-blur-md border border-primary/50 rounded-full flex items-center justify-center neon-glow-primary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">forest</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Quantum Valley</span>
+            </button>
+
+            <!-- Facility: Main Bar -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 65%; left: 62%;"
+                    data-tags="food main bar"
+                    data-queue-id="1"
+                    data-queue-name="Main Bar"
+                    data-queue-location="North Village"
+                    data-queue-icon="local_bar"
+                    data-queue-wait="25"
+                    data-queue-capacity="85"
+                    data-queue-updated="Just now">
+                <div class="w-10 h-10 bg-tertiary-container/30 backdrop-blur-md border border-tertiary/50 rounded-full flex items-center justify-center neon-glow-tertiary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-tertiary text-lg">local_bar</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Main Bar</span>
+            </button>
+
+            <!-- Facility: Food Village -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 35%; left: 60%;"
+                    data-tags="food food village"
+                    data-queue-id="3"
+                    data-queue-name="Food Village"
+                    data-queue-location="Central Plaza"
+                    data-queue-icon="restaurant"
+                    data-queue-wait="15"
+                    data-queue-capacity="60"
+                    data-queue-updated="Just now">
+                <div class="w-10 h-10 bg-primary-container/30 backdrop-blur-md border border-primary/50 rounded-full flex items-center justify-center neon-glow-primary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-lg">restaurant</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Food Village</span>
+            </button>
+
+            <!-- Facility: Water Station -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 78%; left: 38%;"
+                    data-tags="food facility water station"
+                    data-queue-id="5"
+                    data-queue-name="Water Station"
+                    data-queue-location="Near Main Stage"
+                    data-queue-icon="water_drop"
+                    data-queue-wait="2"
+                    data-queue-capacity="10"
+                    data-queue-updated="Just now">
+                <div class="w-10 h-10 bg-secondary-container/30 backdrop-blur-md border border-secondary/50 rounded-full flex items-center justify-center neon-glow-secondary mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-secondary text-lg">water_drop</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Water</span>
+            </button>
+
+            <!-- Facility: Toilets -->
+            <button class="map-marker-label absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer group bg-transparent border-none"
+                    style="top: 78%; left: 76%;"
+                    data-tags="facility toilets"
+                    data-queue-id="2"
+                    data-queue-name="Toilets"
+                    data-queue-location="East Stage"
+                    data-queue-icon="wc"
+                    data-queue-wait="5"
+                    data-queue-capacity="20"
+                    data-queue-updated="Just now">
+                <div class="w-10 h-10 bg-surface-container-high/80 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-on-surface text-lg">wc</span>
+                </div>
+                <span class="font-body text-label-sm text-on-surface bg-surface-container/80 px-2 py-1 rounded-full border border-white/5 backdrop-blur-sm">Toilets</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Stage Modal -->
+    <div id="stage-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="modal-close-btn" data-modal-close aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <div class="flex items-center gap-4 mb-4 mt-2">
+                <div class="w-14 h-14 rounded-2xl bg-primary-container/20 border border-primary/40 flex items-center justify-center neon-glow-primary">
+                    <span class="stage-modal-icon material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="stage-modal-name font-display text-headline-md text-on-surface truncate">Main Stage</h3>
+                    <p class="stage-modal-desc font-body text-body-md text-on-surface-variant truncate">The biggest stage, headliners only</p>
+                </div>
+            </div>
+
+            <div class="stage-modal-now mb-5">
+                <p class="font-body text-label-sm text-tertiary uppercase tracking-widest mb-2 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+                    Now Playing
+                </p>
+                <div class="glass-card rounded-xl p-4 border-tertiary/30 cursor-pointer stage-modal-now-card"
+                     data-artist='{"id":"charlotte-de-witte","artist_id":1,"name":"Charlotte de Witte","genre":"Techno","stage":"Main Stage","time":"23:30 - 01:00","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM"}'>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-lg bg-surface-container-highest overflow-hidden flex items-center justify-center">
+                            <img class="stage-modal-now-img w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM" alt="Charlotte de Witte"/>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="stage-modal-now-name font-display text-[18px] text-on-surface truncate">Charlotte de Witte</h4>
+                            <p class="stage-modal-now-meta font-body text-label-sm text-on-surface-variant truncate">Techno • 23:30 - 01:00</p>
+                        </div>
+                        <span class="material-symbols-outlined text-tertiary">chevron_right</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stage-modal-upcoming mb-5">
+                <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Upcoming Sets</p>
+                <div class="stage-modal-upcoming-list space-y-2">
+                    <div class="glass-card rounded-lg p-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-display text-[15px] text-on-surface">The Glitch Mob</p>
+                            <p class="font-body text-label-sm text-on-surface-variant">Electronic</p>
+                        </div>
+                        <span class="font-body text-label-sm text-secondary">18:00 - 19:30</span>
+                    </div>
+                </div>
+            </div>
+
+            <a class="stage-modal-schedule-link btn-secondary w-full justify-center" href="schedule.html">
+                <span class="material-symbols-outlined text-[18px]">event_note</span>
+                View full schedule
+            </a>
+        </div>
+    </div>
+
+    <!-- Queue Modal -->
+    <div id="queue-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="modal-close-btn" data-modal-close aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex items-center gap-4 mb-5 mt-2">
+                <div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center border border-white/10">
+                    <span class="queue-modal-icon material-symbols-outlined text-primary text-[28px]">local_bar</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="queue-modal-name font-display text-headline-md text-on-surface truncate">Queue</h3>
+                    <p class="queue-modal-location font-body text-label-sm text-on-surface-variant uppercase tracking-wider truncate">Location</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-5">
+                <div class="glass-card rounded-xl p-4">
+                    <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Wait</p>
+                    <p class="queue-modal-wait font-display text-headline-md text-primary mt-1">0 min</p>
+                </div>
+                <div class="glass-card rounded-xl p-4">
+                    <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Capacity</p>
+                    <p class="queue-modal-capacity font-display text-headline-md text-secondary mt-1">0%</p>
+                </div>
+            </div>
+            <div class="mb-5">
+                <p class="font-body text-label-sm text-on-surface-variant mb-2">Crowd level</p>
+                <div class="progress-bar">
+                    <div class="queue-modal-bar progress-bar-fill bg-primary" style="width: 0%"></div>
+                </div>
+            </div>
+            <p class="queue-modal-updated font-body text-label-sm text-on-surface-variant text-center">Last updated just now</p>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="home.html" class="nav-item" data-page="home">
+                <span class="material-symbols-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item active" data-page="map">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+                <span>Map</span>
+            </a>
+            <a href="schedule.html" class="nav-item" data-page="schedule">
+                <span class="material-symbols-outlined">event_note</span>
+                <span>Schedule</span>
+            </a>
+            <a href="artists.html" class="nav-item" data-page="artists">
+                <span class="material-symbols-outlined">explore</span>
+                <span>Artists</span>
+            </a>
+            <a href="queues.html" class="nav-item" data-page="queues">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <span>Queues</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

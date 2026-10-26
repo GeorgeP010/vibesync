@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>VibeSync - Live Queues</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: { "primary": "#ddb7ff", "primary-container": "#b76dff", "tertiary": "#ffb0cd", "tertiary-container": "#f751a1", "secondary": "#adc6ff", "secondary-container": "#0566d9", "surface": "#131315", "surface-container": "#201f21", "surface-container-high": "#2a2a2c", "surface-container-highest": "#353437", "surface-container-low": "#1c1b1d", "surface-container-lowest": "#0e0e10", "on-surface": "#e5e1e4", "on-surface-variant": "#cfc2d6", "outline": "#988d9f", "outline-variant": "#4d4354", "on-primary": "#490080", "on-primary-container": "#400071", "background": "#131315", "on-background": "#e5e1e4", "error": "#ffb4ab", "secondary-fixed-dim": "#adc6ff" },
+                fontFamily: { "display": ["Sora"], "body": ["Inter"] },
+                fontSize: { "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }] }
+            }}
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background bg-radial-alt min-h-screen font-body text-body-md overflow-x-hidden" data-logged-in="1">
+
+    <header class="top-bar">
+        <a href="home.html" class="text-primary hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h1 class="top-bar-title">Live Queues</h1>
+        <a href="profile.html" class="hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined text-primary">account_circle</span>
+        </a>
+    </header>
+
+    <main class="content-padding max-w-4xl mx-auto space-y-8">
+
+        <section class="space-y-3 animate-on-scroll">
+            <h2 class="font-display text-headline-lg text-on-surface">Live Queues</h2>
+            <p class="text-on-surface-variant font-body text-body-md">Real-time wait times across the festival grounds.</p>
+
+            <div class="chip-group flex gap-2 overflow-x-auto pb-2 no-scrollbar" data-filter-target=".queue-card">
+                <button class="chip chip-active whitespace-nowrap neon-glow-primary">All Areas</button>
+                <button class="chip chip-inactive whitespace-nowrap">Food &amp; Drink</button>
+                <button class="chip chip-inactive whitespace-nowrap">Restrooms</button>
+                <button class="chip chip-inactive whitespace-nowrap">Merch Tents</button>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 animate-on-scroll">
+
+            <!-- Main Bar -->
+            <button type="button"
+                 class="queue-card glass-card rounded-xl p-5 flex flex-col justify-between relative overflow-hidden cursor-pointer hover:bg-white/5 transition-colors text-left w-full"
+                 data-tags="food & drink food drink"
+                 data-queue-id="1"
+                 data-queue-name="Main Bar"
+                 data-queue-location="North Village"
+                 data-queue-icon="local_bar"
+                 data-queue-wait="25"
+                 data-queue-capacity="85"
+                 data-queue-updated="Just now">
+                <div class="absolute inset-0 bg-gradient-to-br from-tertiary/10 to-transparent opacity-50"></div>
+                <div class="relative z-10 flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-tertiary">local_bar</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Main Bar</h3>
+                            <p class="font-body text-label-sm text-on-surface-variant">North Village</p>
+                        </div>
+                    </div>
+                    <span class="badge text-tertiary bg-tertiary-container/20 neon-glow-tertiary">25 min</span>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center text-label-sm mb-2">
+                        <span class="text-on-surface-variant font-body">Capacity</span>
+                        <span class="text-tertiary font-display font-bold">85% full</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill bg-tertiary neon-glow-tertiary" style="width: 85%"></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Food Village -->
+            <button type="button"
+                 class="queue-card glass-card rounded-xl p-5 flex flex-col justify-between relative overflow-hidden cursor-pointer hover:bg-white/5 transition-colors text-left w-full"
+                 data-tags="food & drink food drink"
+                 data-queue-id="3"
+                 data-queue-name="Food Village"
+                 data-queue-location="Central Plaza"
+                 data-queue-icon="restaurant"
+                 data-queue-wait="15"
+                 data-queue-capacity="60"
+                 data-queue-updated="Just now">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50"></div>
+                <div class="relative z-10 flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">restaurant</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Food Village</h3>
+                            <p class="font-body text-label-sm text-on-surface-variant">Central Plaza</p>
+                        </div>
+                    </div>
+                    <span class="badge text-primary bg-primary-container/20 neon-glow-primary">15 min</span>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center text-label-sm mb-2">
+                        <span class="text-on-surface-variant font-body">Capacity</span>
+                        <span class="text-primary font-display font-bold">60% full</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill bg-primary neon-glow-primary" style="width: 60%"></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Water Station -->
+            <button type="button"
+                 class="queue-card glass-card rounded-xl p-5 flex flex-col justify-between relative overflow-hidden cursor-pointer hover:bg-white/5 transition-colors text-left w-full"
+                 data-tags="food & drink food drink"
+                 data-queue-id="5"
+                 data-queue-name="Water Station"
+                 data-queue-location="Near Main Stage"
+                 data-queue-icon="water_drop"
+                 data-queue-wait="2"
+                 data-queue-capacity="10"
+                 data-queue-updated="Just now">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-50"></div>
+                <div class="relative z-10 flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary">water_drop</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Water Station</h3>
+                            <p class="font-body text-label-sm text-on-surface-variant">Near Main Stage</p>
+                        </div>
+                    </div>
+                    <span class="badge text-secondary bg-secondary-container/20 neon-glow-secondary">2 min</span>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center text-label-sm mb-2">
+                        <span class="text-on-surface-variant font-body">Capacity</span>
+                        <span class="text-secondary font-display font-bold">10% full</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill bg-secondary neon-glow-secondary" style="width: 10%"></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Toilets -->
+            <button type="button"
+                 class="queue-card glass-card rounded-xl p-5 flex flex-col justify-between relative overflow-hidden cursor-pointer hover:bg-white/5 transition-colors text-left w-full"
+                 data-tags="restrooms"
+                 data-queue-id="2"
+                 data-queue-name="Toilets"
+                 data-queue-location="East Stage"
+                 data-queue-icon="wc"
+                 data-queue-wait="5"
+                 data-queue-capacity="20"
+                 data-queue-updated="Just now">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-50"></div>
+                <div class="relative z-10 flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary">wc</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Toilets</h3>
+                            <p class="font-body text-label-sm text-on-surface-variant">East Stage</p>
+                        </div>
+                    </div>
+                    <span class="badge text-secondary bg-secondary-container/20 neon-glow-secondary">5 min</span>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center text-label-sm mb-2">
+                        <span class="text-on-surface-variant font-body">Capacity</span>
+                        <span class="text-secondary font-display font-bold">20% full</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill bg-secondary neon-glow-secondary" style="width: 20%"></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Official Merch -->
+            <button type="button"
+                 class="queue-card glass-card rounded-xl p-5 flex flex-col justify-between relative overflow-hidden cursor-pointer hover:bg-white/5 transition-colors text-left w-full"
+                 data-tags="merch tents"
+                 data-queue-id="4"
+                 data-queue-name="Official Merch"
+                 data-queue-location="South Entrance"
+                 data-queue-icon="checkroom"
+                 data-queue-wait="10"
+                 data-queue-capacity="35"
+                 data-queue-updated="Just now">
+                <div class="absolute inset-0 bg-gradient-to-br from-surface-container-highest/30 to-transparent opacity-50"></div>
+                <div class="relative z-10 flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-on-surface">checkroom</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Official Merch</h3>
+                            <p class="font-body text-label-sm text-on-surface-variant">South Entrance</p>
+                        </div>
+                    </div>
+                    <span class="badge text-on-surface bg-surface-container-highest/50">10 min</span>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center text-label-sm mb-2">
+                        <span class="text-on-surface-variant font-body">Capacity</span>
+                        <span class="text-on-surface font-display font-bold">35% full</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill bg-on-surface" style="width: 35%"></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Medical Tent -->
+            <button type="button"
+                 class="queue-card glass-card rounded-xl p-5 flex flex-col justify-between relative overflow-hidden cursor-pointer hover:bg-white/5 transition-colors text-left w-full"
+                 data-tags=""
+                 data-queue-id="6"
+                 data-queue-name="Medical Tent"
+                 data-queue-location="West Entrance"
+                 data-queue-icon="medical_services"
+                 data-queue-wait="0"
+                 data-queue-capacity="5"
+                 data-queue-updated="Just now">
+                <div class="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent opacity-50"></div>
+                <div class="relative z-10 flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+                            <span class="material-symbols-outlined text-on-surface">medical_services</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-headline-md text-on-surface">Medical Tent</h3>
+                            <p class="font-body text-label-sm text-on-surface-variant">West Entrance</p>
+                        </div>
+                    </div>
+                    <span class="badge text-on-surface bg-surface-container-highest/50">No wait</span>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center text-label-sm mb-2">
+                        <span class="text-on-surface-variant font-body">Capacity</span>
+                        <span class="text-on-surface font-display font-bold">5% full</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill bg-on-surface" style="width: 5%"></div>
+                    </div>
+                </div>
+            </button>
+
+        </section>
+    </main>
+
+    <!-- Queue Modal -->
+    <div id="queue-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="modal-close-btn" data-modal-close aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex items-center gap-4 mb-5 mt-2">
+                <div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center border border-white/10">
+                    <span class="queue-modal-icon material-symbols-outlined text-primary text-[28px]">local_bar</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="queue-modal-name font-display text-headline-md text-on-surface truncate">Queue</h3>
+                    <p class="queue-modal-location font-body text-label-sm text-on-surface-variant uppercase tracking-wider truncate">Location</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-5">
+                <div class="glass-card rounded-xl p-4">
+                    <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Wait</p>
+                    <p class="queue-modal-wait font-display text-headline-md text-primary mt-1">0 min</p>
+                </div>
+                <div class="glass-card rounded-xl p-4">
+                    <p class="font-body text-label-sm text-on-surface-variant uppercase tracking-wider">Capacity</p>
+                    <p class="queue-modal-capacity font-display text-headline-md text-secondary mt-1">0%</p>
+                </div>
+            </div>
+            <div class="mb-5">
+                <p class="font-body text-label-sm text-on-surface-variant mb-2">Crowd level</p>
+                <div class="progress-bar">
+                    <div class="queue-modal-bar progress-bar-fill bg-primary" style="width: 0%"></div>
+                </div>
+            </div>
+            <p class="queue-modal-updated font-body text-label-sm text-on-surface-variant text-center">Last updated just now</p>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="home.html" class="nav-item" data-page="home">
+                <span class="material-symbols-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item" data-page="map">
+                <span class="material-symbols-outlined">map</span>
+                <span>Map</span>
+            </a>
+            <a href="schedule.html" class="nav-item" data-page="schedule">
+                <span class="material-symbols-outlined">event_note</span>
+                <span>Schedule</span>
+            </a>
+            <a href="artists.html" class="nav-item" data-page="artists">
+                <span class="material-symbols-outlined">explore</span>
+                <span>Artists</span>
+            </a>
+            <a href="queues.html" class="nav-item active" data-page="queues">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">hourglass_empty</span>
+                <span>Queues</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

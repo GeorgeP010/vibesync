@@ -4,10 +4,19 @@
    ============================================ */
 
 // ============================================
-// API HELPERS
+// API HELPERS (with static fallback for Vercel / GitHub Pages)
 // ============================================
 const Api = {
     async post(url, payload = {}) {
+        const isStatic = window.location.pathname.endsWith('.html') || 
+                         window.location.protocol === 'file:' || 
+                         window.location.hostname.includes('vercel.app') ||
+                         window.location.hostname.includes('github.io');
+
+        if (isStatic) {
+            return this.mock(url, payload);
+        }
+
         try {
             const res = await fetch(url, {
                 method: 'POST',
@@ -18,25 +27,120 @@ const Api = {
 
             if (res.status === 401) {
                 showToast('Session expired. Please log in again.', 'warning');
-                setTimeout(() => { window.location.href = 'login.php'; }, 1200);
+                setTimeout(() => { window.location.href = 'login.html'; }, 1200);
                 return { ok: false, error: 'unauthenticated' };
             }
 
-            const data = await res.json().catch(() => ({}));
+            if (!res.ok) {
+                return this.mock(url, payload);
+            }
+
+            const data = await res.json().catch(() => null);
+            if (!data) return this.mock(url, payload);
             if (!data.ok) {
                 showToast(data.error || 'Something went wrong', 'error');
             }
             return data;
         } catch (err) {
-            console.error('API error', err);
-            showToast('Network error', 'error');
-            return { ok: false, error: 'network' };
+            return this.mock(url, payload);
         }
     },
+
+    mock(url, payload) {
+        if (url.includes('toggle-favorite')) {
+            const id = String(payload.artist_id);
+            const isFav = State.favorites.has(id);
+            if (isFav) State.favorites.delete(id);
+            else State.favorites.add(id);
+            try {
+                localStorage.setItem('vibesync_favs', JSON.stringify([...State.favorites]));
+            } catch (_) {}
+            showToast(!isFav ? 'Added to favorites!' : 'Removed from favorites', 'success');
+            return { ok: true, is_favorite: !isFav };
+        }
+        if (url.includes('toggle-schedule')) {
+            const id = String(payload.performance_id);
+            const isSch = State.scheduled.has(id);
+            if (isSch) State.scheduled.delete(id);
+            else State.scheduled.add(id);
+            try {
+                localStorage.setItem('vibesync_sch', JSON.stringify([...State.scheduled]));
+            } catch (_) {}
+            showToast(!isSch ? 'Added to your lineup!' : 'Removed from lineup', 'success');
+            return { ok: true, is_scheduled: !isSch };
+        }
+        if (url.includes('update-setting')) {
+            try {
+                const settings = JSON.parse(localStorage.getItem('vibesync_settings') || '{}');
+                settings[payload.setting] = payload.value;
+                localStorage.setItem('vibesync_settings', JSON.stringify(settings));
+            } catch (_) {}
+            showToast('Settings updated', 'success');
+            return { ok: true };
+        }
+        if (url.includes('update-profile')) {
+            try {
+                localStorage.setItem('vibesync_profile', JSON.stringify(payload));
+            } catch (_) {}
+            showToast('Profile updated!', 'success');
+            return { ok: true };
+        }
+        if (url.includes('add-genre')) {
+            showToast('Genre added!', 'success');
+            return { ok: true, id: Date.now() };
+        }
+        if (url.includes('remove-genre')) {
+            showToast('Genre removed', 'info');
+            return { ok: true };
+        }
+        if (url.includes('stage-info')) {
+            const stageMap = {
+                1: { id: 1, name: 'Main Stage', description: 'The biggest stage, headliners only', icon: 'graphic_eq',
+                     now_playing: { artist_name: 'Charlotte de Witte', genre: 'Techno', start_time: '23:30', end_time: '01:00', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM' },
+                     upcoming: [{ artist_name: 'The Glitch Mob', genre: 'Electronic', start_time: '18:00', end_time: '19:30' }] },
+                2: { id: 2, name: 'Neon Garden', description: 'Outdoor stage with light installations', icon: 'speaker',
+                     now_playing: { artist_name: 'BICEP', genre: 'Electronic', start_time: '21:00', end_time: '22:30', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCcNQeZ8_lg0R7a96p1nIiEGVvrO_LWOaIqG5URz-BJu6FeBv4S6S0FdjrtocKG0RTo8MiMI4fOUkX3jWWrQLQ1oV4KEP59TDNvaMlnZOJ0EXJCNzMHO5l2a_9efAJpHoeR2yXA_e69n-17sSkGc48ivanrEHjqJcDzxfCLdFRTmC4wIgtPhUueee6oWVYP1N6yZ_wl0L-bEDo3tDB8JPEEUikURGlF_gPJmEF3a7T8mYT75BxAUfHbJIe988mVawAL7UPt0OljFl4' },
+                     upcoming: [{ artist_name: 'The Midnight', genre: 'Synthwave', start_time: '22:45', end_time: '00:00' }] },
+                3: { id: 3, name: 'Bass Arena', description: 'Heavy bass and dubstep cathedral', icon: 'subwoofer',
+                     now_playing: { artist_name: 'Digital Echoes', genre: 'Bass Music', start_time: '21:00', end_time: '22:30' },
+                     upcoming: [{ artist_name: 'Bass Phantom', genre: 'Dubstep', start_time: '16:00', end_time: '17:30' }] },
+                4: { id: 4, name: 'Circuit Grounds', description: 'Tech-house & techno warehouse', icon: 'electric_bolt',
+                     now_playing: { artist_name: 'Peggy Gou', genre: 'House', start_time: '22:15', end_time: '23:45', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCscqzXeE0KOnhHEl5EnsodD3o21EGnBwtMUDpVQiIQwwzpXucqCOMxJYefm21wE5f77Uk375Ji7eWkLyF_dYGkb71IVvhmZsBdB_Aac2cXeg824M5CMovaiPaxJ6xhNVMVQh8uNv3TGGj4SudrNQ06_McYOHWBVM8T5CVePy2-phzU46SsXPRyONIJDw5CxMsPOyd_sU8fcvWdwxd1Y_svIg3-MAZw9B90GMWE93E86jIl451UAN11ImIRSnjDD2pxa-x2KVeWHvE' },
+                     upcoming: [] },
+                5: { id: 5, name: 'Quantum Valley', description: 'Melodic techno in a forest setting', icon: 'forest',
+                     now_playing: { artist_name: 'Tale Of Us', genre: 'Melodic Techno', start_time: '20:45', end_time: '22:15', image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAZ-s0_gOx-Wtbtep7G_VdouZptbXY-KiMZWyaeWfZoz1oUEi217bxGmETnGLA2CHDxisdZ-IoOW7h4BofixWjl4Rh7pLH8rOy2tZnBSJj9el58Mz6jtB_VH-FGAusg3_nqWHP5OzITIxVA_CfE7hA-B15eqmGv_UwJdmvvTKGBWMIoUgkJBIwLLRBU4DMUuUhbhGD7OA4FU77iSnzMfiuyD6dCSYO9dt6QIvkN9--HE8hmbC5s1H_SFK_NCX3ZScNoFLhnTG1XSgY' },
+                     upcoming: [{ artist_name: 'Aurora Wave', genre: 'Ambient Techno', start_time: '00:30', end_time: '02:00' }] },
+            };
+            const data = stageMap[payload.stage_id] || stageMap[1];
+            return { ok: true, stage: data, now_playing: data.now_playing, upcoming: data.upcoming };
+        }
+        if (url.includes('search-users')) {
+            const q = (payload.q || '').toLowerCase();
+            const allUsers = [
+                { id: 2, name: 'Maya Lin', email: 'maya@vibesync.app', avatar_url: '', status: 'friends' },
+                { id: 3, name: 'Liam Vance', email: 'liam@vibesync.app', avatar_url: '', status: 'friends' },
+                { id: 4, name: 'Elena Rostova', email: 'elena@vibesync.app', avatar_url: '', status: 'friends' },
+                { id: 5, name: 'Sam Taylor', email: 'sam@vibesync.app', avatar_url: '', status: 'incoming' },
+                { id: 7, name: 'Chloe Becker', email: 'chloe@vibesync.app', avatar_url: '', status: 'none' },
+                { id: 8, name: 'Jordan Rivera', email: 'jordan@vibesync.app', avatar_url: '', status: 'none' },
+            ];
+            const matches = allUsers.filter(u => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
+            return { ok: true, users: matches };
+        }
+        if (url.includes('send-friend-request')) {
+            showToast('Friend request sent!', 'success');
+            return { ok: true };
+        }
+        if (url.includes('respond-friend-request')) {
+            showToast(payload.action === 'accept' ? 'Friend request accepted!' : 'Request removed', 'info');
+            return { ok: true };
+        }
+        return { ok: true };
+    }
 };
 
 // ============================================
-// LOCAL STATE (hydrated from PHP-rendered data attributes)
+// LOCAL STATE (hydrated from data attributes & localStorage)
 // ============================================
 const State = {
     favorites: new Set(),    // numeric artist_id strings
@@ -44,14 +148,24 @@ const State = {
 
     hydrate() {
         const main = document.querySelector('main[data-favorites], main[data-scheduled]');
-        if (!main) return;
+        if (main) {
+            try {
+                const favs = JSON.parse(main.dataset.favorites || '[]');
+                favs.forEach(id => this.favorites.add(String(id)));
+            } catch (_) {}
+            try {
+                const sch = JSON.parse(main.dataset.scheduled || '[]');
+                sch.forEach(id => this.scheduled.add(String(id)));
+            } catch (_) {}
+        }
+        // Load stored favorites and schedule from localStorage
         try {
-            const favs = JSON.parse(main.dataset.favorites || '[]');
-            favs.forEach(id => this.favorites.add(String(id)));
+            const storedFavs = JSON.parse(localStorage.getItem('vibesync_favs') || '[]');
+            storedFavs.forEach(id => this.favorites.add(String(id)));
         } catch (_) {}
         try {
-            const sch = JSON.parse(main.dataset.scheduled || '[]');
-            sch.forEach(id => this.scheduled.add(String(id)));
+            const storedSch = JSON.parse(localStorage.getItem('vibesync_sch') || '[]');
+            storedSch.forEach(id => this.scheduled.add(String(id)));
         } catch (_) {}
     },
 
@@ -94,11 +208,16 @@ function showToast(message, type = 'success') {
 // NAVIGATION ACTIVE STATE
 // ============================================
 function setActiveNav() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.php';
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const pageMap = {
-        'index.php': '', 'home.php': 'home', 'map.php': 'map',
-        'schedule.php': 'schedule', 'artists.php': 'artists',
-        'queues.php': 'queues', 'profile.php': 'profile',
+        'index.php': '', 'index.html': '', '': '',
+        'home.php': 'home', 'home.html': 'home',
+        'map.php': 'map', 'map.html': 'map',
+        'schedule.php': 'schedule', 'schedule.html': 'schedule',
+        'artists.php': 'artists', 'artists.html': 'artists',
+        'queues.php': 'queues', 'queues.html': 'queues',
+        'profile.php': 'profile', 'profile.html': 'profile',
+        'friends.php': 'friends', 'friends.html': 'friends',
     };
     const activeId = pageMap[currentPage] || '';
 

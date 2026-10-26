@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>VibeSync - Artists</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: { "primary": "#ddb7ff", "primary-container": "#b76dff", "tertiary": "#ffb0cd", "tertiary-container": "#f751a1", "secondary": "#adc6ff", "secondary-container": "#0566d9", "surface": "#131315", "surface-container": "#201f21", "surface-container-high": "#2a2a2c", "surface-container-highest": "#353437", "surface-container-low": "#1c1b1d", "surface-container-lowest": "#0e0e10", "on-surface": "#e5e1e4", "on-surface-variant": "#cfc2d6", "outline": "#988d9f", "outline-variant": "#4d4354", "on-primary": "#490080", "on-primary-container": "#400071", "background": "#131315", "on-background": "#e5e1e4", "error": "#ffb4ab", "secondary-fixed-dim": "#adc6ff" },
+                fontFamily: { "display": ["Sora"], "body": ["Inter"] },
+                fontSize: { "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }] }
+            }}
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background bg-radial-default min-h-screen font-body text-body-md overflow-x-hidden" data-logged-in="1">
+
+    <header class="top-bar">
+        <a href="home.html" class="text-primary hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h1 class="top-bar-title">Artists</h1>
+        <a href="profile.html" class="hover:bg-white/5 transition-colors p-2 rounded-full w-10 h-10 overflow-hidden flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary">account_circle</span>
+        </a>
+    </header>
+
+    <main class="content-padding max-w-4xl mx-auto space-y-10" data-favorites='["1","2"]'>
+
+        <section class="space-y-4 animate-on-scroll">
+            <h2 class="font-display text-headline-lg text-on-surface">Curated for Your <span class="text-gradient">Vibe</span></h2>
+            <p class="font-body text-body-lg text-on-surface-variant">Based on your listening history, we found these matches.</p>
+
+            <div class="glass-panel rounded-full flex items-center px-4 py-3">
+                <span class="material-symbols-outlined text-outline mr-3">search</span>
+                <input type="text" data-search-input=".artist-card" placeholder="Search artists..."
+                       class="bg-transparent border-none outline-none w-full text-on-surface placeholder-on-surface-variant"/>
+            </div>
+
+            <div class="chip-group flex gap-2 overflow-x-auto pb-2 no-scrollbar" data-filter-target=".artist-card">
+                <button class="chip chip-active whitespace-nowrap">All</button>
+                <button class="chip chip-inactive whitespace-nowrap">Techno</button>
+                <button class="chip chip-inactive whitespace-nowrap">House</button>
+                <button class="chip chip-inactive whitespace-nowrap">Melodic</button>
+                <button class="chip chip-inactive whitespace-nowrap">Electronic</button>
+            </div>
+        </section>
+
+        <!-- Top Artist Hero Card -->
+        <section class="animate-on-scroll">
+            <div class="artist-card glass-card rounded-2xl overflow-hidden relative group cursor-pointer"
+                 data-tags="techno"
+                 data-artist='{"id":"charlotte-de-witte","artist_id":1,"name":"Charlotte de Witte","genre":"Techno","stage":"Main Stage","time":"Tonight, 11:30 PM","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM"}'>
+                <div class="absolute top-4 right-4 z-10 flex items-center gap-2 bg-surface/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-primary/30">
+                    <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                    <span class="font-body text-label-sm text-primary">98% Vibe Match</span>
+                </div>
+                <div class="h-56 md:h-80 w-full relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0C] via-transparent to-transparent z-10"></div>
+                    <img alt="Charlotte de Witte" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe-qY3LOvkiUHaM5yUia8qGBl3zrf_E00L8RVF-0G0ls2KJzJFDmQcy0mrUGwd8MTx7k9oY3jvEk6Mcr2Dbb_96EF3Npe1xQL7esaTYV8nXZZgESbBpnGidNnAZGLCA_qagI1Sf6nJOLwGM933uQXVHje0SZaHfVzb5apjSkO-TuTgWFy2y3Ta5rSXE0qt4pABJcvtNbuVF5Gc7cMpmL_Z_4jWE3RE-Z2hh89rqEo28aV_7OPiv52iCivUlMO6_B81c8y4y1HrPgM"/>
+                </div>
+                <div class="p-5 relative z-20 -mt-16">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <div class="inline-block px-3 py-1 rounded-full bg-secondary-container/30 text-secondary-fixed-dim font-body text-label-sm mb-2 border border-secondary-container/50">Top Match</div>
+                            <h3 class="font-display text-headline-lg text-on-surface">Charlotte de Witte</h3>
+                            <p class="font-body text-body-md text-on-surface-variant mt-1">Main Stage • Tonight, 11:30 PM</p>
+                        </div>
+                        <button class="btn-primary hidden md:flex" data-favorite-btn-pivot data-artist-id="1">
+                            <span class="material-symbols-outlined text-[16px]">favorite</span>
+                            <span class="schedule-label">Favorited</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rising Stars Grid -->
+        <section class="space-y-4 animate-on-scroll">
+            <h3 class="font-display text-headline-md text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-tertiary">trending_up</span>
+                Rising Stars
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <!-- BICEP -->
+                <div class="artist-card glass-card rounded-xl p-4 flex gap-4 cursor-pointer hover:bg-white/5 transition-colors relative"
+                     data-tags="electronic"
+                     data-artist='{"id":"bicep","artist_id":2,"name":"BICEP","genre":"Electronic","stage":"Neon Garden","time":"Saturday, 21:00","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuCcNQeZ8_lg0R7a96p1nIiEGVvrO_LWOaIqG5URz-BJu6FeBv4S6S0FdjrtocKG0RTo8MiMI4fOUkX3jWWrQLQ1oV4KEP59TDNvaMlnZOJ0EXJCNzMHO5l2a_9efAJpHoeR2yXA_e69n-17sSkGc48ivanrEHjqJcDzxfCLdFRTmC4wIgtPhUueee6oWVYP1N6yZ_wl0L-bEDo3tDB8JPEEUikURGlF_gPJmEF3a7T8mYT75BxAUfHbJIe988mVawAL7UPt0OljFl4"}'>
+                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-surface-container-highest flex-shrink-0">
+                        <img alt="BICEP" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcNQeZ8_lg0R7a96p1nIiEGVvrO_LWOaIqG5URz-BJu6FeBv4S6S0FdjrtocKG0RTo8MiMI4fOUkX3jWWrQLQ1oV4KEP59TDNvaMlnZOJ0EXJCNzMHO5l2a_9efAJpHoeR2yXA_e69n-17sSkGc48ivanrEHjqJcDzxfCLdFRTmC4wIgtPhUueee6oWVYP1N6yZ_wl0L-bEDo3tDB8JPEEUikURGlF_gPJmEF3a7T8mYT75BxAUfHbJIe988mVawAL7UPt0OljFl4"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-display text-headline-md text-on-surface truncate">BICEP</h4>
+                            <button class="favorite-btn favorited text-primary" data-artist-id="2">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                            </button>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant">Electronic • Neon Garden</p>
+                        <div class="flex items-center gap-1 mt-2 text-primary">
+                            <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                            <span class="font-body text-label-sm">85% match</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Peggy Gou -->
+                <div class="artist-card glass-card rounded-xl p-4 flex gap-4 cursor-pointer hover:bg-white/5 transition-colors relative"
+                     data-tags="house"
+                     data-artist='{"id":"peggy-gou","artist_id":3,"name":"Peggy Gou","genre":"House","stage":"Circuit Grounds","time":"Saturday, 22:15","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuCscqzXeE0KOnhHEl5EnsodD3o21EGnBwtMUDpVQiIQwwzpXucqCOMxJYefm21wE5f77Uk375Ji7eWkLyF_dYGkb71IVvhmZsBdB_Aac2cXeg824M5CMovaiPaxJ6xhNVMVQh8uNv3TGGj4SudrNQ06_McYOHWBVM8T5CVePy2-phzU46SsXPRyONIJDw5CxMsPOyd_sU8fcvWdwxd1Y_svIg3-MAZw9B90GMWE93E86jIl451UAN11ImIRSnjDD2pxa-x2KVeWHvE"}'>
+                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-surface-container-highest flex-shrink-0">
+                        <img alt="Peggy Gou" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCscqzXeE0KOnhHEl5EnsodD3o21EGnBwtMUDpVQiIQwwzpXucqCOMxJYefm21wE5f77Uk375Ji7eWkLyF_dYGkb71IVvhmZsBdB_Aac2cXeg824M5CMovaiPaxJ6xhNVMVQh8uNv3TGGj4SudrNQ06_McYOHWBVM8T5CVePy2-phzU46SsXPRyONIJDw5CxMsPOyd_sU8fcvWdwxd1Y_svIg3-MAZw9B90GMWE93E86jIl451UAN11ImIRSnjDD2pxa-x2KVeWHvE"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-display text-headline-md text-on-surface truncate">Peggy Gou</h4>
+                            <button class="favorite-btn text-outline hover:text-primary" data-artist-id="3">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant">House • Circuit Grounds</p>
+                        <div class="flex items-center gap-1 mt-2 text-primary">
+                            <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                            <span class="font-body text-label-sm">82% match</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tale Of Us -->
+                <div class="artist-card glass-card rounded-xl p-4 flex gap-4 cursor-pointer hover:bg-white/5 transition-colors relative"
+                     data-tags="melodic melodic techno"
+                     data-artist='{"id":"tale-of-us","artist_id":4,"name":"Tale Of Us","genre":"Melodic Techno","stage":"Quantum Valley","time":"Sunday, 20:45","image":"https://lh3.googleusercontent.com/aida-public/AB6AXuAZ-s0_gOx-Wtbtep7G_VdouZptbXY-KiMZWyaeWfZoz1oUEi217bxGmETnGLA2CHDxisdZ-IoOW7h4BofixWjl4Rh7pLH8rOy2tZnBSJj9el58Mz6jtB_VH-FGAusg3_nqWHP5OzITIxVA_CfE7hA-B15eqmGv_UwJdmvvTKGBWMIoUgkJBIwLLRBU4DMUuUhbhGD7OA4FU77iSnzMfiuyD6dCSYO9dt6QIvkN9--HE8hmbC5s1H_SFK_NCX3ZScNoFLhnTG1XSgY"}'>
+                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-surface-container-highest flex-shrink-0">
+                        <img alt="Tale Of Us" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ-s0_gOx-Wtbtep7G_VdouZptbXY-KiMZWyaeWfZoz1oUEi217bxGmETnGLA2CHDxisdZ-IoOW7h4BofixWjl4Rh7pLH8rOy2tZnBSJj9el58Mz6jtB_VH-FGAusg3_nqWHP5OzITIxVA_CfE7hA-B15eqmGv_UwJdmvvTKGBWMIoUgkJBIwLLRBU4DMUuUhbhGD7OA4FU77iSnzMfiuyD6dCSYO9dt6QIvkN9--HE8hmbC5s1H_SFK_NCX3ZScNoFLhnTG1XSgY"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-display text-headline-md text-on-surface truncate">Tale Of Us</h4>
+                            <button class="favorite-btn text-outline hover:text-primary" data-artist-id="4">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant">Melodic Techno • Quantum Valley</p>
+                        <div class="flex items-center gap-1 mt-2 text-primary">
+                            <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                            <span class="font-body text-label-sm">79% match</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Glitch Mob -->
+                <div class="artist-card glass-card rounded-xl p-4 flex gap-4 cursor-pointer hover:bg-white/5 transition-colors relative"
+                     data-tags="electronic"
+                     data-artist='{"id":"glitch-mob","artist_id":11,"name":"The Glitch Mob","genre":"Electronic","stage":"Main Stage","time":"Friday, 18:00","image":""}'>
+                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-gradient-to-br from-primary-container/30 to-secondary-container/30 flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-primary text-3xl">graphic_eq</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-display text-headline-md text-on-surface truncate">The Glitch Mob</h4>
+                            <button class="favorite-btn text-outline hover:text-primary" data-artist-id="11">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant">Electronic • Main Stage</p>
+                        <div class="flex items-center gap-1 mt-2 text-primary">
+                            <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                            <span class="font-body text-label-sm">91% match</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Midnight -->
+                <div class="artist-card glass-card rounded-xl p-4 flex gap-4 cursor-pointer hover:bg-white/5 transition-colors relative"
+                     data-tags="synthwave electronic"
+                     data-artist='{"id":"the-midnight","artist_id":6,"name":"The Midnight","genre":"Synthwave","stage":"Neon Garden","time":"Friday, 22:45","image":""}'>
+                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-gradient-to-br from-tertiary-container/30 to-primary-container/30 flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-tertiary text-3xl">nightlife</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-display text-headline-md text-on-surface truncate">The Midnight</h4>
+                            <button class="favorite-btn text-outline hover:text-primary" data-artist-id="6">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant">Synthwave • Neon Garden</p>
+                        <div class="flex items-center gap-1 mt-2 text-primary">
+                            <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                            <span class="font-body text-label-sm">88% match</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aurora Wave -->
+                <div class="artist-card glass-card rounded-xl p-4 flex gap-4 cursor-pointer hover:bg-white/5 transition-colors relative"
+                     data-tags="ambient ambient techno"
+                     data-artist='{"id":"aurora-wave","artist_id":7,"name":"Aurora Wave","genre":"Ambient Techno","stage":"Quantum Valley","time":"Friday, 00:30","image":""}'>
+                    <div class="w-20 h-20 rounded-xl overflow-hidden bg-gradient-to-br from-secondary-container/30 to-surface-container-high flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-secondary text-3xl">waves</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-display text-headline-md text-on-surface truncate">Aurora Wave</h4>
+                            <button class="favorite-btn text-outline hover:text-primary" data-artist-id="7">
+                                <span class="material-symbols-outlined">favorite_border</span>
+                            </button>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant">Ambient Techno • Quantum Valley</p>
+                        <div class="flex items-center gap-1 mt-2 text-primary">
+                            <span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                            <span class="font-body text-label-sm">73% match</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Artist Modal -->
+    <div id="artist-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-handle"></div>
+            <button class="modal-close-btn" data-modal-close aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex items-center gap-4 mb-4 mt-2">
+                <div class="w-16 h-16 rounded-xl bg-surface-container-highest overflow-hidden">
+                    <img class="modal-artist-img w-full h-full object-cover" src="" alt="Artist"/>
+                </div>
+                <div class="flex-1">
+                    <h3 class="modal-artist-name font-display text-headline-md text-on-surface">Artist</h3>
+                    <p class="modal-artist-genre font-body text-body-md text-on-surface-variant">Genre</p>
+                </div>
+                <button class="modal-fav-btn favorite-btn text-outline" data-artist-id="">
+                    <span class="material-symbols-outlined text-[28px]">favorite_border</span>
+                </button>
+            </div>
+            <div class="space-y-3 mb-6">
+                <div class="flex items-center gap-3 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-secondary">location_on</span>
+                    <span class="modal-artist-stage font-body text-body-md">Stage</span>
+                </div>
+                <div class="flex items-center gap-3 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-primary">schedule</span>
+                    <span class="modal-artist-time font-body text-body-md">Time</span>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <button class="modal-schedule-btn btn-primary flex-1 justify-center" data-artist="">Add to Schedule</button>
+                <a href="map.html" class="btn-secondary flex-1 justify-center">
+                    <span class="material-symbols-outlined text-[18px]">map</span>
+                    Navigate
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="home.html" class="nav-item" data-page="home">
+                <span class="material-symbols-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item" data-page="map">
+                <span class="material-symbols-outlined">map</span>
+                <span>Map</span>
+            </a>
+            <a href="schedule.html" class="nav-item" data-page="schedule">
+                <span class="material-symbols-outlined">event_note</span>
+                <span>Schedule</span>
+            </a>
+            <a href="artists.html" class="nav-item active" data-page="artists">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+                <span>Artists</span>
+            </a>
+            <a href="queues.html" class="nav-item" data-page="queues">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <span>Queues</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

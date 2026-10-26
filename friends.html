@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <title>VibeSync - Friends</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: { "primary": "#ddb7ff", "primary-container": "#b76dff", "tertiary": "#ffb0cd", "tertiary-container": "#f751a1", "secondary": "#adc6ff", "secondary-container": "#0566d9", "surface": "#131315", "surface-container": "#201f21", "surface-container-high": "#2a2a2c", "surface-container-highest": "#353437", "surface-container-low": "#1c1b1d", "surface-container-lowest": "#0e0e10", "on-surface": "#e5e1e4", "on-surface-variant": "#cfc2d6", "outline": "#988d9f", "outline-variant": "#4d4354", "on-primary": "#490080", "on-primary-container": "#400071", "background": "#131315", "on-background": "#e5e1e4", "error": "#ffb4ab", "secondary-fixed-dim": "#adc6ff" },
+                fontFamily: { "display": ["Sora"], "body": ["Inter"] },
+                fontSize: { "display-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }] }
+            }}
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background bg-radial-default min-h-screen font-body text-body-md overflow-x-hidden" data-logged-in="1">
+
+    <header class="top-bar">
+        <a href="profile.html" class="text-primary hover:bg-white/5 transition-colors p-2 rounded-full">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <h1 class="top-bar-title">Friends</h1>
+        <span class="font-display text-headline-md text-primary px-2">4</span>
+    </header>
+
+    <main class="content-padding max-w-3xl mx-auto space-y-8">
+
+        <!-- Find Friends -->
+        <section class="space-y-4 animate-on-scroll">
+            <h2 class="font-display text-headline-lg text-on-surface">Find friends</h2>
+            <p class="font-body text-body-md text-on-surface-variant">Search by name or email to send a friend request.</p>
+
+            <div class="glass-panel rounded-full flex items-center px-4 py-3">
+                <span class="material-symbols-outlined text-outline mr-3">search</span>
+                <input id="friend-search" type="text" autocomplete="off"
+                       placeholder="Search people…"
+                       class="bg-transparent border-none outline-none w-full text-on-surface placeholder-on-surface-variant"/>
+                <span id="friend-search-spinner" class="material-symbols-outlined text-outline animate-spin" hidden>progress_activity</span>
+            </div>
+
+            <div id="friend-search-results" class="space-y-2"></div>
+            <p id="friend-search-empty" class="font-body text-label-sm text-on-surface-variant" hidden>
+                No matches. Try a different name or email.
+            </p>
+        </section>
+
+        <!-- Pending -->
+        <section class="space-y-4 animate-on-scroll">
+            <h3 class="font-display text-headline-md text-on-surface">Pending Requests</h3>
+
+            <div class="glass-card rounded-xl p-4 flex items-center gap-3 friend-row friend-incoming"
+                 data-user-id="5"
+                 data-user-name="Sam Taylor">
+                <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest border border-white/10 flex-shrink-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-secondary">person</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-display text-[16px] text-on-surface truncate">Sam Taylor</p>
+                    <p class="font-body text-label-sm text-on-surface-variant truncate flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px] text-tertiary">call_received</span>
+                        Sent you a request
+                    </p>
+                </div>
+                <button type="button" class="friend-accept-btn btn-primary px-3 py-1.5 text-label-sm" aria-label="Accept">
+                    <span class="material-symbols-outlined text-[16px]">check</span>
+                </button>
+                <button type="button" class="friend-reject-btn btn-secondary px-3 py-1.5 text-label-sm text-on-surface-variant hover:text-error" aria-label="Decline">
+                    <span class="material-symbols-outlined text-[16px]">close</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Your Friends List -->
+        <section class="space-y-4 animate-on-scroll">
+            <h3 class="font-display text-headline-md text-on-surface">Your Friends (4)</h3>
+            <div id="friends-list" class="space-y-3">
+
+                <!-- Friend 1 -->
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3 friend-row" data-user-id="2">
+                    <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest border border-primary/40 flex-shrink-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">face</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2">
+                            <p class="font-display text-[16px] text-on-surface truncate">Maya Lin</p>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant truncate">At Main Stage • Charlotte de Witte</p>
+                    </div>
+                    <a href="map.html" class="p-2 rounded-full bg-surface-container hover:bg-white/10 text-primary transition-colors" title="Locate on map">
+                        <span class="material-symbols-outlined text-[18px]">near_me</span>
+                    </a>
+                </div>
+
+                <!-- Friend 2 -->
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3 friend-row" data-user-id="3">
+                    <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest border border-secondary/40 flex-shrink-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-secondary">face_6</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2">
+                            <p class="font-display text-[16px] text-on-surface truncate">Liam Vance</p>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant truncate">At Food Village • Central Plaza</p>
+                    </div>
+                    <a href="map.html" class="p-2 rounded-full bg-surface-container hover:bg-white/10 text-secondary transition-colors" title="Locate on map">
+                        <span class="material-symbols-outlined text-[18px]">near_me</span>
+                    </a>
+                </div>
+
+                <!-- Friend 3 -->
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3 friend-row" data-user-id="4">
+                    <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest border border-tertiary/40 flex-shrink-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-tertiary">face_3</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2">
+                            <p class="font-display text-[16px] text-on-surface truncate">Elena Rostova</p>
+                            <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant truncate">At Neon Garden • BICEP</p>
+                    </div>
+                    <a href="map.html" class="p-2 rounded-full bg-surface-container hover:bg-white/10 text-tertiary transition-colors" title="Locate on map">
+                        <span class="material-symbols-outlined text-[18px]">near_me</span>
+                    </a>
+                </div>
+
+                <!-- Friend 4 -->
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3 friend-row" data-user-id="6">
+                    <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest border border-white/10 flex-shrink-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-outline">face_4</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2">
+                            <p class="font-display text-[16px] text-on-surface truncate">Marcus Chen</p>
+                            <span class="w-2 h-2 rounded-full bg-white/20"></span>
+                        </div>
+                        <p class="font-body text-label-sm text-on-surface-variant truncate">Offline • Seen 30m ago</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="home.html" class="nav-item" data-page="home">
+                <span class="material-symbols-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="map.html" class="nav-item" data-page="map">
+                <span class="material-symbols-outlined">map</span>
+                <span>Map</span>
+            </a>
+            <a href="schedule.html" class="nav-item" data-page="schedule">
+                <span class="material-symbols-outlined">event_note</span>
+                <span>Schedule</span>
+            </a>
+            <a href="artists.html" class="nav-item" data-page="artists">
+                <span class="material-symbols-outlined">explore</span>
+                <span>Artists</span>
+            </a>
+            <a href="queues.html" class="nav-item" data-page="queues">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+                <span>Queues</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
